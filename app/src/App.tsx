@@ -6,14 +6,20 @@ function App() {
 
   const [name, setName] = React.useState('');
   const [message, setMessage] = React.useState('');
+  const [pdfUrl, setpdfUrl] = React.useState('');
 
   const getDataFromApi = async(e: any)=>{
     e.preventDefault();
-    const data = await fetch(`/api/hello?name=${name}`);
+    //const data = await fetch(`/api/hello?name=${name}`);
+    const data = await fetch(`https://abepdfapi.azurewebsites.net/api/httppdf?name=${name}`);
     const json = await data.json();
 
-    if (json.message){
-      setMessage(json.message);
+    const message: string = json.message;
+    if (message.startsWith('https')){
+      setpdfUrl(message);
+    } 
+    else {
+      setMessage(message);
     }
   };
 
@@ -37,6 +43,7 @@ function App() {
           </div>
         </form>
         <div><h5>Message: {message} </h5></div>
+        <div hidden={pdfUrl === ''}><h5><a href={pdfUrl}>Click here to view 1095</a></h5></div>
       </header>
     </div>
   );
