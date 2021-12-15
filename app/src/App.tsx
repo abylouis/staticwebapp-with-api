@@ -17,9 +17,11 @@ function App() {
     const message: string = json.message;
     if (message.startsWith('https')){
       setpdfUrl(message);
+      setMessage('');
     } 
     else {
       setMessage(message);
+      setpdfUrl('');
     }
   };
 
