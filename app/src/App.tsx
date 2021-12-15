@@ -42,8 +42,7 @@ function App() {
             <button type="submit" className="App-button">Submit</button>
           </div>
         </form>
-        <div><h5>Message: {message} </h5></div>
-        <div hidden={pdfUrl === ''}><h5><a href={pdfUrl}>Click here to view 1095</a></h5></div>
+        <div><h5>Message: {pdfUrl} </h5></div>
       </header>
     </div>
   );
